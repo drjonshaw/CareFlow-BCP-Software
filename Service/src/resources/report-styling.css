@@ -1,0 +1,447 @@
+html, body, * {
+    margin: 0;
+    padding: 0;
+    font-family: Segoe UI,Helvetica Neue,Arial,Sans-Serif;
+    font-size: 13px;
+}
+img {
+    border: 0;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+p {
+    padding: .2em;
+}
+
+/* Index file */
+
+.indexStats {
+    font-weight: bold;
+    color: white;
+    margin-top:.5em;
+}
+.indexFile {
+    color: white;
+    margin-top:.5em;
+}
+.index {
+    padding:2em;
+    background-color: #e9e9e9;
+    padding-bottom: 5em;
+}
+.indexLeadText {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: .3em;
+    margin-bottom: .6em;
+}
+.index ul {
+    list-style-type: decimal;
+    /* top right bottom left*/
+    margin: 0em;
+    padding: 10px;
+    overflow: hidden;
+   
+}
+.index li {
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 20px;
+    clear: both;
+}
+
+.index li a {
+    display: block;    
+    font-size: 18px;
+    color: blue;
+    padding: 5px;
+    text-decoration: none;
+}
+.indexArchiveList {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+.archiveSelectLabel {
+    float: left;
+    display: inline-block;
+    padding-right: .8em;
+}
+.archiveSelect {
+    float: left;
+    display: inline-block;
+    color:blue;
+}
+.indexFooter {
+    clear: both;
+    margin-top: 0em;
+    padding: .8em;
+    background: #037bc1;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    color: white;
+}
+/* Patient list reports */
+
+.report {
+    clear: both;    
+}
+.reportHeader {
+    clear: right;
+    background: #037bc1;
+    width: 100%;
+    padding: 1.2em;
+    display: inline-block;
+}
+.logo {
+    float: right;
+    padding: 1em;
+    display: inline-block;
+}
+.logoImage {
+    width: 70%;
+    height: auto;
+}
+.headerContainer {
+    float: left;    
+    display: inline-block;    
+}
+.headerTable {
+    font-weight: bold;
+    color: white;
+}
+.isArchiveTeamReport {
+    background-color: rgb(250, 253, 33);
+    margin-left: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: normal;
+    color: black;
+}
+.reportBody {
+    padding: 1.2em;
+}
+.report-footer {
+    clear: both;
+    margin-top: 5em;
+    padding: .8em;
+    background: #037bc1;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    color: white;
+}
+
+/* Table css */
+
+.report table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+    margine-bottom: 15px;
+}
+.patientList_table {
+    border: 1px solid rgb(78, 78, 78);
+    position: relative;
+    margin: 0 0 0 0;
+    font-size: .95em;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+    .patientList_table th, .patientList_table td {
+        border: 1px solid rgb(78, 78, 78);
+        padding: .3em .3em .3em .3em;
+    }
+
+    /* table header */
+    .patientList_table thead {
+        background: #EEEEEE;
+        color: #232625;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 13px;
+        padding: .6em;
+    }
+    
+    .patientList_table th {
+        background: #EEEEEE;
+        padding: .5em .5em;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        text-align: left;
+    }
+    .patientList_table td {
+        vertical-align: top;
+    }
+    .patientList_table th.patient {
+        width: 20% !important;
+    }
+
+    .patientList_table th.situation {
+        width: 20% !important;
+    }
+
+    .patientList_table th.background {
+        width: 20% !important;
+    }
+
+    .patientList_table th.assessment {
+        width: 20% !important;
+    }
+
+    .patientList_table th.recommendation {
+        width: 20% !important;
+    }
+   
+
+    .patientList_table .handoverNotes_table{
+        position: relative;
+        margin: 0 0 0 0;
+        font-size: .95em;
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+    }
+    .patientList_table .handoverNotes_table td{
+        border: none;
+    }
+    .patientList_table .handoverNotes_table td {
+        vertical-align: middle;
+    }
+    .patientList_table .handoverNotes_table td .profileCell {
+        vertical-align: top;
+        text-align: left;
+        font-weight: 500;
+        color: #464646;
+    }
+    .patientList_table .handoverNotes_table .lastupdated {
+        font-size: 1em;
+        padding-top: 0.1em;
+        line-height: 1.1em;
+    }
+    .patientList_table .handoverNotes_table .profileBlock {
+        display:block;
+        float: left;
+        padding-right: .8em;
+    }
+    .patientList_table .handoverNotes_table .profileBlock.profile {
+        padding-right: .3em;
+        font-weight: 700;
+        color: #000000;
+    }
+    .patientList_table .handoverNotes_table .profileBlock.updated {
+        padding-left: .3em;
+        font-weight: 400;
+        color: #1d1d1d;
+    }
+    .patientList_table .handoverNotes_table .profileBlock span {
+        padding-left: .8em;
+    }
+    .patientList_table .handoverNotes_table .profileBlock .date {
+        font-weight: 500;
+    }
+    .patientList_table .handoverNotes_table .notesRow{
+        margin-bottom: 1em;
+    }
+    .patientList_table .handoverNotes_table .noteColumn{
+        width: 25% !important;
+        vertical-align: top;
+        padding: .8em .1em;
+        border-bottom: 1px solid #d8d8d8;
+    }
+    .patientList_table .handoverNotes_table .noteColumn.first{
+        padding-left: .3em;
+    }
+    .patientList_table .handoverNotes_table td .noNotes {
+        vertical-align: middle;
+        text-align: center;
+        font-weight: 500;
+        color: #464646;
+    }
+    /* table data */
+
+    /* handover cells */
+
+    .patientList_table .handoverNotes_table .noteTxt {
+        height: 99%;
+        font-size: .9em;
+        display: block;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-word;
+        word-break: break-word;
+        padding: .2em;
+        overflow: auto;
+    }
+        .patientList_table .handoverNotes_table .noteTxt :hover {
+            cursor: pointer;
+        }
+    .patientList_table textarea.handoverNotes_table .noteTxt {
+        width: 100%;
+        overflow: auto;
+        border: 1px solid #DDDEDE;
+        max-height: 900px;
+        word-wrap: break-word;
+        white-space: pre-wrap !important;
+    }
+    .patientList_table textarea.noteTxt:hover {
+        cursor: text !important;
+    }
+    .patientList_table .handoverNotes_table .rowSpacer{
+        border:none;
+    }
+    .patientList_table .handoverNotes_table .rowSpacer td{
+        border:none;
+        padding-bottom: .5em;
+    }
+    
+    /* patient details cell */
+
+    .patientList_PID {
+        padding: .8em .8em;
+    }
+        .patientList_PID_name {
+            font-weight: bold;
+            word-wrap: break-word;
+            margin: 0 0 .6em 0;
+        }
+        
+        .patientList_PID_surname {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .patientList_PID_dob {
+            margin: 0 0 0 0;
+            display: block;
+        }
+        .patientList_table .patientList_bayBed-row {
+            margin: 0 0 .3em 0;
+            display: block;
+        }
+    
+    /* tags and updated row */
+
+    .patientList_table .tags {
+        padding-top: 10px;
+        background: rgb(231, 231, 231);
+        margin-top: 10px;
+        margin-bottom: 3px;
+        width: 100%;
+    }
+    .patientList_table .tagsLabel {
+            color: #6e6e6e;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 1em;
+            padding: .6em;
+            padding-top: 0.1em;
+            display: inline-block;
+            line-height: 1.1em;
+            position: relative;
+        }
+        .patientList_table .clinicalTag {
+            border-radius: 6px;
+            border: 1px solid #DDDEDE;
+            background: #EEEEEE;
+            padding: 0.4em;
+            margin: 0 0.25em 0.5em 0;
+            display: inline-block;
+            line-height: 1.1em;
+            position: relative;
+            font-size: .9em;
+            font-weight: bold;
+        }
+
+        
+    
+/*    .tasks_table     */
+
+    .patientList_table th.urgent {
+        width: 130px !important;
+    }
+    .patientList_table th.taskPatient {
+        width: 20% !important;
+    }
+    .patientList_table th.assigned {
+        width: 15% !important;
+    }
+    .patientList_table th.raised {
+        width: 15% !important;
+    }
+    .patientList_table .urgent .isUrgent {
+            color: red;
+            font-weight: bold;
+    }
+    .patientList_table .raised .date, .patientList_table .type .description, .patientList_table .assigned .assignee  {
+        font-weight: bold;
+    }
+    .patientList_table .assigned .unassigned  {
+        color: rgb(255, 136, 0);
+        font-weight: bold;
+    }
+/*    .referrals table     */
+
+.patientList_table th.urgent {
+    width: 100px !important;
+}
+
+.patientList_table th.referralPatient {
+    width: 25% !important;
+}
+.patientList_table th.referral {
+    width: 55% !important;
+}
+.patientList_table th.raised {
+    width: 20% !important;
+}
+.patientList_table .referral .referralType {
+    color: rgb(121, 121, 121);
+    font-weight: 600;
+}
+.patientList_table .referral .referralTeam {
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+}
+.patientList_table .referral .referralCreated {
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    padding-left:10px;
+}
+.patientList_table .referral .sbarBlock {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    font-size: .9em;
+}
+.patientList_table .referral .sbar {
+    padding: 0em;
+}
+.patientList_table .referral .sbar .key {
+    font-weight: 500;
+}
+.patientList_table .referral .sbar .val {
+    margin-left: 10px;
+}
+.patientList_table .status .referralPending {
+        color: rgb(255, 144, 39);
+        font-weight: bold;
+}
+.patientList_table .status .referralAccepted {
+    color: rgb(0, 168, 70);
+    font-weight: bold;
+}
+
+
+        

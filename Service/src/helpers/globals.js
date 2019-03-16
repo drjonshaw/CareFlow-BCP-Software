@@ -1,0 +1,22 @@
+module.exports = {
+    urlscheme: "https://",
+    authHost: "auth.careflowapp.com",
+    appHost: "appapi.careflowapp.com",
+    notifyHost: "notifyapi.careflowapp.com",
+    archiveFolderName: "",
+    archiveFileNamePrefix: "",
+    latestFolderName: "latest",
+    resourceFolder: "src/resources",
+    logoFile: "SystemCWhiteBlue.png",
+    cssTemplate: "report-styling.css",
+    indexFileName: "index",
+    indexTemplate: "index.html",
+    handoverTemplate: "report-template-handover.html",
+    defaultArchivingIntervalInHours: 12,
+    filePaths: [],
+    accessToken: {},
+    networkid: "",
+    networkName: "",
+    username: "",
+    password: ""    
+}

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Index Page for CareFlow BCP lists</title>
+    <link rel="stylesheet" href="report-styling.css" type="text/css" />
+</head>
+<body class="indexBody">
+
+    <div class="report">
+        <div class="reportHeader">
+            <div class="logo">
+                        <img alt="SystemC Logo" class="logoImage" src="SystemCWhiteBlue.png">
+            </div>
+            <div class="headerContainer"></div>
+                <header>
+                    <h1>CareFlow BCP Index</h1>
+                </header>
+                <div class="indexStats">
+                <span>{{CreatedDate}} for {{data.HeaderFields.NetworkName}}, (id:{{data.HeaderFields.NetworkID}})</span>
+                </div>
+                <div class="indexFile">
+                <span>{{FileString}}{{#if IsArchiveIndex}}<span class="isArchiveTeamReport">Not latest report!</span>{{/if}}</span>
+                </div>
+            </div>
+        </div>
+        
+        {{! Template for viewing list of groups with link to report and also CareFlow url }}
+        <div class="index">
+            <div ><span class="indexLeadText">Links to team reports:</span></div>
+            <ul>
+                {{#each data.Teams}}
+                
+                    <li>
+                        {{#if ../IsIndex}}
+                        <a href="{{ReportURL}}"  target="_blank">{{Name}}</a>
+                        {{else if ../IsArchiveIndex}}
+                        <a href="{{ArchiveReportURL}}" target="_blank">{{Name}}</a>
+                        {{/if}}
+                    </li>
+                
+                {{/each}}
+            </ul>
+            <p>A total of {{data.ReportFields.NoOfTeams}} teams were found. </p>
+
+            <div class="indexArchiveList">
+                <div class="archiveSelectLabel">Previously archived files:</div>
+                <div class="archiveSelect">
+                    <select onChange='window.open(this.value)'>
+                        <option value="">Select file...</option>
+                        {{#each data.FilePaths}}
+                        <option value="{{FilePath}}">{{FileName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="indexFooter">
+                End of Index.
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
