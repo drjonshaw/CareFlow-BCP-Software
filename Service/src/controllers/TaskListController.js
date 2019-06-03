@@ -52,7 +52,8 @@ const reqTasks = async (token, accessGroupId, page) => {
               'Authorization': 'Bearer ' + token,
               'Accept': 'application/json;version=10',
               'Content-Type': 'application/json;charset=UTF-8',
-              'Cache-Control': 'no-cache'
+              'Cache-Control': 'no-cache',
+              'API-Key': 'FF99FF99-FF99-FF99-FF99-FF99FF99FF99'
             }
         let res = await axios.post(url, postBody, {headers: headerContent})
         //if(config.debug){console.log(`>> Returned TaskList from Careflow API. Status code ${res.status}`)}

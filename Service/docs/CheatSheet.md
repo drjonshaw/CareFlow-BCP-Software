@@ -15,7 +15,7 @@ axios.get('/user/12345')
 
 **Axios Setting Headers**
 var config = {
-  headers: {'X-My-Custom-Header': 'Header-Value'}
+  headers: {'X-My-Custom-Header': 'Header-Value', 'API-Key': 'FF99FF99-FF99-FF99-FF99-FF99FF99FF99'}
 };
 
 axios.get('https://api.github.com/users/codeheaven-io', config);

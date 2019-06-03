@@ -10,7 +10,7 @@ module.exports = {
     async login (req, res) {
         try {
             const url = `${globals.urlscheme}${config.environment}${globals.authHost}/Home/Login`
-            const headerContent = { 'Content-Type': 'application/x-www-form-urlencoded', 'Cache-Control': 'no-cache' }
+            const headerContent = { 'Content-Type': 'application/x-www-form-urlencoded', 'Cache-Control': 'no-cache','API-Key': 'FF99FF99-FF99-FF99-FF99-FF99FF99FF99' }
             const data = qs.stringify({
                 response_type: 'token',
                 redirect_uri: 'http://www.careflowconnect.com',
