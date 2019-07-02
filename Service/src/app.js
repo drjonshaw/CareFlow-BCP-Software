@@ -9,6 +9,7 @@ const config = require('../config.js')
 const logJsonOutput = require('./helpers/logJsonOutput.js')
 const reportWriter = require('./helpers/reportWriter.js')
 const handoverListController = require('./controllers/HandoverListController.js')
+const tasksMetaDataController = require('./controllers/TasksMetaDataController.js')
 const taskListController = require('./controllers/taskListController.js')
 const referralListController = require('./controllers/ReferralListController.js')
 
@@ -96,7 +97,20 @@ const Main = async function() {
         filePathToCreate: `${globals.archiveFolderName}/${globals.indexFileName}_${globals.archiveFileNamePrefix}.html`
     }
     reportWriter.TransformAndWriteReport(archiveIndexFileDetails, JSON.stringify(indexReportData), ("network " + globals.networkName));
+    globals.groupsAllowingTasks
 
+
+    // Create array of teams that have tasks enabled
+    if(globals.taskPermissions){
+        let taskTeams = await tasksMetaDataController.GetTasksMetaData(accessToken, globals.networkid)
+        try {
+            globals.groupsAllowingTasks.push.apply(globals.groupsAllowingTasks, taskTeams.Data.GroupsAllowingTasks)
+            logJsonOutput.logToFile("TaskTeams", globals.groupsAllowingTasks)
+        } catch(error) {
+            console.error("Pushing task meta data into globals failed. Error" + error);
+        }
+    }
+    
     // loop through data set and call importer functions for report
     if(!config.debug) {console.log(`>> getting team lists and creating reports...`)}
     var thisReportObject = {}
@@ -112,7 +126,8 @@ const Main = async function() {
                 "GroupExternalIdentifier": team.GroupExternalIdentifier,
                 "NoOfPatients": 0,
                 "DaysForTasks": config.daysForTasks,
-                "DaysForReferrals": config.daysForReferrals                
+                "DaysForReferrals": config.daysForReferrals,
+                "HasTasksEnabled": false                
             },
             Patients: [],
             Tasks: [],
@@ -125,12 +140,20 @@ const Main = async function() {
         thisReportObject.Patients.push.apply(thisReportObject.Patients, patientArray)
 
         // now get task data for this team, set fields and push into report object
-        let taskArray = await taskListController.GetTasks(accessToken, team.AccessGroupID)
-        thisReportObject.Tasks.push.apply(thisReportObject.Tasks, taskArray)
+        if(globals.taskPermissions){
+            if (!!globals.groupsAllowingTasks.find(x=> x.AccessGroupId === team.AccessGroupID)) {
+                let taskArray = await taskListController.GetTasks(accessToken, team.AccessGroupID)
+                thisReportObject.Tasks.push.apply(thisReportObject.Tasks, taskArray)
+                thisReportObject.ReportFields.HasTasksEnabled = true
+            }
+        }
+
 
         // now get referrals for this team, set fields and push into report object
-        let referralsArray = await referralListController.GetReferrals(accessToken, team.GroupExternalIdentifier)
-        thisReportObject.Referrals.push.apply(thisReportObject.Referrals, referralsArray)
+        if(globals.referralPermissions){
+            let referralsArray = await referralListController.GetReferrals(accessToken, team.GroupExternalIdentifier)
+            thisReportObject.Referrals.push.apply(thisReportObject.Referrals, referralsArray)
+        }
 
         // log json output
         if(config.debug) {

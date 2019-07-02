@@ -26,12 +26,25 @@ module.exports = {
                 if (user.status === 200) {
                     if(config.debug) {
                         console.log(`>> Logged in as ${user.data.Data.FullName.FirstName} ${user.data.Data.FullName.LastName}`)
+                        logJsonOutput.logToFile("UserData", user.data)
                     }
-                    let memberAreaObj = user.data.Data.MemberAreasAndPermissions.find(o => o.NetworkId === parseInt(globals.networkid))
-                    //if(config.debug) {logJsonOutput.logToFile("UserData", user.data) }
+                    let networks = user.data.Data.MemberAreasAndPermissions.filter(y => y.IsNetwork)
+                    let memberAreaObj = networks.find(x => x.NetworkId === parseInt(globals.networkid) )
+                    if(config.debug) {
+                        logJsonOutput.logToFile("Networks", networks) 
+                        logJsonOutput.logToFile("NetworkObject", memberAreaObj)
+                    }
 
+                    //set network name and task permissions
                     if(memberAreaObj){
-                        globals.networkName = memberAreaObj.NetworkName                        
+                        globals.networkName = memberAreaObj.NetworkName   
+                        console.log(`Checking permissions for ${memberAreaObj.NetworkName}`)     
+                        if (memberAreaObj.Permissions.includes('ViewUserTasks')) {
+                            globals.taskPermissions = true;
+                        }
+                        if (memberAreaObj.Permissions.includes('EnableReferralsForTeam')) {
+                            globals.referralPermissions = true;
+                        }
                     } else {
                         console.error(`User ${user.data.Data.FullName.FirstName} ${user.data.Data.FullName.LastName} is not a member of NetworkID ${globals.networkid} or 'networkid' not set in config file`)
                         return;
@@ -41,7 +54,7 @@ module.exports = {
                 return response.headers.access_token;             
             }                
         } catch (err) {
-            console.error(`Auth failed!`);
+            console.error(`Auth or GetUserSummary failed for networkid ${globals.networkid}!`);
             console.error(`Response status ${err.response.status}`);
         }
     }
@@ -62,9 +75,10 @@ const GetUser = async (token) => {
       } 
       let userResponse = await axios.get(url, headerConfig)
       //console.log(`Returned UserSummary from Careflow API. Status code ${userResponse.status}`);
+      if(config.debug) {logJsonOutput.logToFile("UserSummary", userResponse.data) }
       return userResponse;
     } catch (err) {
-      console.log(`Error occured authenticating.`)
+      console.log(`Error occured getting user.`)
       console.error(err.response)
     }
 };
