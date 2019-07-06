@@ -14,25 +14,25 @@
             </div>
             <div class="headerContainer">
                 <header>
-                    <h1>{{data.ReportFields.TeamName}} BCP Report</h1>
+                    <h1>{{data.ReportFields.TeamName}}</h1>
                 </header>
 
                 <table class="headerTable">
                     <tr>
-                        <td>Created on:</td>
+                        <td>Report generated on:</td>
                         <td>{{CreatedDate}}</td>
                     </tr>
                     <tr>
-                        <td>For Group ID: </td>
+                        <td>CareFlow Group ID: </td>
                         <td>{{data.ReportFields.TeamID}}</td>
                     </tr>
                     <tr>
-                        <td width="200px">No of patients returned: </td>
+                        <td width="350px">No of patients in handover list at time of report: </td>
                         <td>{{data.ReportFields.NoOfPatients}}</td>
                     </tr>
                     <tr>
-                        <td>File: </td>
-                        <td>{{FileString}}{{#if IsArchiveTeamReport}}<span class="isArchiveTeamReport">Not latest report!</span>{{/if}}</td>
+                        <td>Relative file path: </td>
+                        <td>{{FileString}}{{#if IsArchiveTeamReport}}<span class="isArchiveTeamReport">Not the latest report!</span>{{/if}}</td>
                     </tr>
                     <tr>
                         <td>

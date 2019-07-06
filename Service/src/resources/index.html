@@ -14,51 +14,54 @@
             </div>
             <div class="headerContainer"></div>
                 <header>
-                    <h1>CareFlow BCP Index</h1>
+                    <h1>CareFlow Business Continuity Tool</h1>
                 </header>
-                <div class="indexStats">
-                <span>{{CreatedDate}} for {{data.HeaderFields.NetworkName}}, (id:{{data.HeaderFields.NetworkID}})</span>
+                <div class="indexStats">                    
+                    <p>Report generated on {{CreatedDate}}</p>
+                    <p>for {{data.HeaderFields.NetworkName}}</p>
+                </div>
+                
+                <div class="indexArchiveList">
+                    <div class="archiveSelectLabel">Navigate to a previous set of reports:</div>
+                    <div class="archiveSelect">
+                        <select onChange="window.open(this.value, '_self')">
+                            <option value="">Select report set...</option>
+                            {{#each data.FilePaths}}
+                            <option value="{{relativefilepath}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
                 </div>
                 <div class="indexFile">
-                <span>{{FileString}}{{#if IsArchiveIndex}}<span class="isArchiveTeamReport">Not latest report!</span>{{/if}}</span>
+                        <span>Currently looking at: </span><span>{{FileString}} {{#if IsArchiveIndex}}<span class="isArchiveTeamReport">Not the latest report!</span>{{/if}}</span>
                 </div>
             </div>
         </div>
         
         {{! Template for viewing list of groups with link to report and also CareFlow url }}
         <div class="index">
-            <div ><span class="indexLeadText">Links to team reports:</span></div>
+            <div class="indexListHeader">List of Teams</div>
+            <div class="indexListSubHeader">Select to view team report:</div>
             <ul>
                 {{#each data.Teams}}
                 
                     <li>
                         {{#if ../IsIndex}}
-                        <a href="{{ReportURL}}"  target="_blank">{{Name}}</a>
+                        <a href="{{ReportURL}}"  target="_self">{{Name}}</a>
                         {{else if ../IsArchiveIndex}}
-                        <a href="{{ArchiveReportURL}}" target="_blank">{{Name}}</a>
+                        <a href="{{ArchiveReportURL}}" target="_self">{{Name}}</a>
                         {{/if}}
                     </li>
                 
                 {{/each}}
             </ul>
-            <p>A total of {{data.ReportFields.NoOfTeams}} teams were found. </p>
 
-            <div class="indexArchiveList">
-                <div class="archiveSelectLabel">Previously archived files:</div>
-                <div class="archiveSelect">
-                    <select onChange='window.open(this.value)'>
-                        <option value="">Select file...</option>
-                        {{#each data.FilePaths}}
-                        <option value="{{FilePath}}">{{FileName}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
+            
         </div>
         
         <footer>
             <div class="indexFooter">
-                End of Index.
+                End of reports list. {{data.HeaderFields.NetworkName}}, CareFlow Network ID:{{data.HeaderFields.NetworkID}}.
             </div>
         </footer>
 

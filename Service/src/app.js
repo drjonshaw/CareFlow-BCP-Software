@@ -51,8 +51,9 @@ const Main = async function() {
     // Create folders etc
     if(config.outputFolder) {
         await setup.CreateFilesAndFolders(config.outputFolder)
-        let filePaths = await getFilePaths.Execute(config.outputFolder)
+        let filePaths = await getFilePaths.Execute()
         indexReportData.FilePaths.push.apply(indexReportData.FilePaths, filePaths)    
+        if(config.debug) { logJsonOutput.logToFile("IndexFilePaths", filePaths) }
     } else { 
         console.error("No output folder set in config file.") 
     }

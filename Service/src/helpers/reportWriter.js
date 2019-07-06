@@ -54,7 +54,7 @@ module.exports = {
                 IsIndex: isIndex,
                 IsArchiveIndex: isArchiveIndex,
                 IsArchiveTeamReport: isArchiveTeamReport,
-                FileString: reportFileObject.filePathToCreate,
+                FileString: "../" + reportFileObject.filePathToCreate,
                 data: cleanedJsonData
             };
             // use handlebars to insert data into template html
