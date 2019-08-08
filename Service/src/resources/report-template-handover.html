@@ -127,7 +127,7 @@
                                 <!-- Each note represents each profile where there is a note -->
                                 {{#each HandoverNotes}}
                                 <!-- Profile and audit info -->
-                                <tr class="profileRow" style="border-left: .3em solid #{{Profile.Colour}}">
+                                <tr class="profileRow" style="border-left: .3em solid #{{splitProfileColourString Profile.Colour}}">
                                     <td colspan="4" class="lastupdated">
                                             <div class="profileBlock profile" > 
                                                     {{Profile.Name}}
@@ -150,7 +150,7 @@
                                     </td>
                                 </tr>
                                 <!-- Note -->
-                                <tr class="notesRow" style="border-left: .3em solid #{{Profile.Colour}}">
+                                <tr class="notesRow" style="border-left: .3em solid #{{splitProfileColourString Profile.Colour}}">
                                     <td data-patient-row-id="{{@index}}" class="noteColumn first">
                                         <span data-patient-row-id="{{@index}}" data-patientid="{{PatientExternalIdentifier}}" data-handover="situation" class="noteTxtt" data-type="textarea">
                                             {{Notes.0.Value}}</span>
