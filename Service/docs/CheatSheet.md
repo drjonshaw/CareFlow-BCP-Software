@@ -30,11 +30,26 @@ axios.post('/save', { firstName: 'Marlon' }, config);
   }
 
 # Git
+# commit
+0. $ cd - **to get to root dir if working in service dir**
 1. $ git add --all
 2. $ git commit -m "your changes"
 3. $ git push
-then
-1. $ git pull
+
+# Git commands
+1. $ ls
+2. $ cd - **go back**
+3. $ cd.. **move up dir**
+4. $ cd somefoldername **3 letters then tab**
+5. $ mdir 
+6. $ rmdir
+
+# pull
+2. $ git pull
+
+# updating node libraries
+1. cd service
+2. npm audit
 
 # Async / Await
 

@@ -1,0 +1,19 @@
+{
+  "name": "careflow-bcp-software",
+  "version": "1.0.0",
+  "description": "Business Continuity Solution for CareFlow Connect\r by Jon Shaw, March 2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drjonshaw/CareFlow-BCP-Software.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drjonshaw/CareFlow-BCP-Software/issues"
+  },
+  "homepage": "https://github.com/drjonshaw/CareFlow-BCP-Software#readme"
+}

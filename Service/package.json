@@ -14,9 +14,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^7.0.0",
-    "eslint": "^5.15.1",
+    "eslint": "^5.16.0",
     "fs-extra": "^7.0.1",
-    "handlebars": "^4.1.0",
+    "handlebars": "^4.5.3",
     "klaw": "^3.0.0",
     "moment": "^2.24.0",
     "underscore": "^1.9.1"
