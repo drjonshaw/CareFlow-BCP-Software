@@ -47,32 +47,10 @@ p {
 }
 .indexListSubHeader {
     font-size: 16px;
-    padding-top: 12px;
-    padding-left: 10px;
-}
-.index ul {
-    list-style-type: decimal;
-    /* top right bottom left*/
-    margin: 0em;
-    padding: 10px;
-    overflow: hidden;
-   
-}
-.index li {
-    float: left;
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 20px;
-    clear: both;
+    margin-top: .2em;
+    margin-bottom:.2em;
 }
 
-.index li a {
-    display: block;    
-    font-size: 18px;
-    color: blue;
-    padding: 5px;
-    text-decoration: none;
-}
 .indexArchiveList {
     padding-top: 2em;
     padding-bottom: 2em;
@@ -88,6 +66,50 @@ p {
     display: inline-block;
     color:blue;
 }
+
+
+table.teamTable {
+    width: 800px;
+    text-align: left;
+    border-collapse: collapse;
+    border: 1px solid #C7D2D6;
+    margin-top: 15px;
+  }
+  table.teamTable td, table.teamTable th {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #C7D2D6;
+  }
+  table.teamTable .countColumn {
+    text-align: center;
+  }
+  table.teamTable tbody td {
+    font-size: 18px;
+  }
+  
+  table.teamTable tbody td a {
+    text-decoration: none;
+    color:blue;
+  }
+  table.teamTable thead {
+      border-bottom: 2px solid #444444;
+  }
+  table.teamTable thead th {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+  }
+  table.teamTable tbody tr.pageRow:hover {
+    background-color: #D0E4F5;
+  }
+
+  [data-href]:hover {
+    cursor: pointer;
+    background-color: #D0E4F5;
+  }
+
 .indexFooter {
     clear: both;
     margin-top: 0em;

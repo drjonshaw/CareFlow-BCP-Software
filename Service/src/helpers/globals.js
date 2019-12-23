@@ -19,6 +19,7 @@ module.exports = {
     groupsAllowingTasks: [],
     accessToken: {},
     networkid: "",
+    networkGUID: "",
     networkName: "",
     username: "",
     password: ""    

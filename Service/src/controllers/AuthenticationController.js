@@ -35,15 +35,18 @@ module.exports = {
                         logJsonOutput.logToFile("NetworkObject", memberAreaObj)
                     }
 
-                    //set network name and task permissions
+                    //set network name and task & referral permissions
                     if(memberAreaObj){
                         globals.networkName = memberAreaObj.NetworkName   
+                        globals.networkGUID = memberAreaObj.AccessGroupExternalIdentifier
                         console.log(`Checking permissions for ${memberAreaObj.NetworkName}`)     
                         if (memberAreaObj.Permissions.includes('ViewUserTasks')) {
                             globals.taskPermissions = true;
+                            if(config.debug){console.log(`Network includes Tasks`)}
                         }
-                        if (memberAreaObj.Permissions.includes('EnableReferralsForTeam')) {
+                        if (memberAreaObj.Permissions.includes('ViewReferralTeams')) {
                             globals.referralPermissions = true;
+                            if(config.debug){console.log(`Network includes Referrals`)}
                         }
                     } else {
                         console.error(`User ${user.data.Data.FullName.FirstName} ${user.data.Data.FullName.LastName} is not a member of NetworkID ${globals.networkid} or 'networkid' not set in config file`)

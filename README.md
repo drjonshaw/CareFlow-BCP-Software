@@ -32,7 +32,10 @@ by Jon Shaw, March 2019
     notify_clientId: "",
     notify_alertTopicId: ""
 
+    **environment: enter vnext for dev apis. Careflow environments: https://confluence.systemc.com/pages/viewpage.action?pageId=44252567** 
+
 5. Setting 'debug: true' will output more to the console log and create json files to examine the data
+    
 
 5. To run solution using npm, cd into 'Service' directory, then
     $ npm start

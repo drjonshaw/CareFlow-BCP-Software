@@ -44,7 +44,7 @@ const modifyReferralData = async(referrals, groupExternalIdentifier) => {
         try {
             modifiedReferrals.push(item)            
         } catch(error) {
-            console.error("Pushing handover data item failed. Error" + error);
+            console.error("Pushing referral data item failed. Error" + error);
         }
     })
     return modifiedReferrals
@@ -93,7 +93,10 @@ const reqReferrals = async (token, groupExternalIdentifier, skip, take) => {
         //if(config.debug){console.log(`>> Returned ReferralList from Careflow API. Status code ${res.status}`)}
 
         if (res.status === 200) {                
-            //if(config.debug){logJsonOutput.logToFile(`ReferralList_Team${groupExternalIdentifier}`, res.data.Data)}
+            if(config.debug){
+                console.log(`Team Referrals Status code: ${res.data.Messages.code}, Message: '${res.data.Messages.Message}'`)
+                logJsonOutput.logToFile(`ReferralList_Team${groupExternalIdentifier}`, res.data.Data)
+            }
             return res.data
         } else {
             console.error(`Status code: ${res.data.Messages.code}, Message: '${res.data.Messages.Message}'`)

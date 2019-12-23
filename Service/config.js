@@ -3,11 +3,11 @@
 
 module.exports = {
     debug: true,
-    environment: "appdev",
+    environment: "vnext",
     outputFolder: "../output",
     archivingIntervalInHours: 6,
-    daysForTasks: 31,
-    daysForReferrals: 14,
+    daysForTasks: 60,
+    daysForReferrals: 60,
     notify_clientId: "",
     notify_alertTopicId: ""
 }

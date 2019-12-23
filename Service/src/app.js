@@ -8,6 +8,7 @@ const teamsController = require('./controllers/TeamsController.js')
 const config = require('../config.js')
 const logJsonOutput = require('./helpers/logJsonOutput.js')
 const reportWriter = require('./helpers/reportWriter.js')
+const cleanFileName = require('./helpers/cleanFileName.js')
 const handoverListController = require('./controllers/HandoverListController.js')
 const tasksMetaDataController = require('./controllers/TasksMetaDataController.js')
 const taskListController = require('./controllers/taskListController.js')
@@ -68,16 +69,32 @@ const Main = async function() {
     // Get teams and load into index report object
     if(!config.debug) {console.log(`>> getting teams and creating index files`)}
     let networkTeams = await teamsController.GetTeams(accessToken, globals.networkid)
+    let networkTeamCounts = await teamsController.GetNetworkTeamCounts(accessToken, globals.networkid)
     indexReportData.HeaderFields.NetworkName = globals.networkName
     indexReportData.HeaderFields.NetworkID = globals.networkid
     indexReportData.HeaderFields.NoOfTeams = (networkTeams.Data.Groups).length        
     networkTeams.Data.Groups.forEach(function (team) {
         try {
+            var cleanedTeamName = cleanFileName.Execute(team.Name) 
+            team.Name = cleanedTeamName         
             team.ReportURL = team.Name + ".html"
             team.ArchiveReportURL = `${globals.archiveFileNamePrefix}_${team.Name}.html`
+            // gets task and referral counts for each team
+            let countObj = {}
+            countObj = networkTeamCounts.Data.Groups.find(x => x.AccessGroupID === team.AccessGroupID )
+            if(countObj == null ){
+                team.Updates = ""
+                team.OutstandingTasks = ""
+                team.PendingReferralsReceived = ""
+            }
+            else {
+                if(countObj.Updates > 0){team.Updates = countObj.Updates}
+                if(countObj.OutstandingTasks > 0){team.OutstandingTasks = countObj.OutstandingTasks}
+                if(countObj.PendingReferralsReceived > 0){team.PendingReferralsReceived = countObj.PendingReferralsReceived}
+            }       
             indexReportData.Teams.push(team)
         } catch(error) {
-            console.error("Pushing team data into Index report object failed. Error" + error);
+            console.error(`Pushing team data into Index report object failed for ${team.Name} ${team.AccessGroupID}. Error ${error}`);
         }
     })
     if(config.debug) {
@@ -148,7 +165,6 @@ const Main = async function() {
                 thisReportObject.ReportFields.HasTasksEnabled = true
             }
         }
-
 
         // now get referrals for this team, set fields and push into report object
         if(globals.referralPermissions){

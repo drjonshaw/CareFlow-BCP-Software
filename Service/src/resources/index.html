@@ -4,7 +4,16 @@
     <meta charset="utf-8" />
     <title>Index Page for CareFlow BCP lists</title>
     <link rel="stylesheet" href="report-styling.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+        $('*[data-href]').on('click', function() {
+            window.open($(this).data("href"));
+        });
+    });
+    </script>
 </head>
+
 <body class="indexBody">
 
     <div class="report">
@@ -42,21 +51,27 @@
         <div class="index">
             <div class="indexListHeader">List of Teams</div>
             <div class="indexListSubHeader">Select to view team report:</div>
-            <ul>
+            <table class="teamTable">
+                <tr>
+                  <th>Team Page</th>
+                  <th class="countColumn">Outstanding Tasks</th>
+                  <th class="countColumn">Pending Referrals</th class="countColumn">
+                </tr>
                 {{#each data.Teams}}
-                
-                    <li>
-                        {{#if ../IsIndex}}
-                        <a href="{{ReportURL}}"  target="_self">{{Name}}</a>
-                        {{else if ../IsArchiveIndex}}
-                        <a href="{{ArchiveReportURL}}" target="_self">{{Name}}</a>
-                        {{/if}}
-                    </li>
-                
-                {{/each}}
-            </ul>
-
-            
+                <tr data-href="{{#if ../IsIndex}}{{ReportURL}}{{else if ../IsArchiveIndex}}{{ArchiveReportURL}}{{/if}}">
+                  <td class="pageLink">
+                    {{#if ../IsIndex}}
+                    <a href="{{ReportURL}}"  target="_self">{{Name}}</a> 
+                    {{else if ../IsArchiveIndex}}
+                    <a href="{{ArchiveReportURL}}" target="_self">{{Name}}</a>
+                    {{/if}}
+                  </td>
+                  <td class="countColumn"><span class="counts">{{OutstandingTasks}}</span></td class="countColumn">
+                  <td class="countColumn"><span class="counts">{{PendingReferralsReceived}}</span></td class="countColumn">
+                </tr>
+                {{/each}}                
+              </table>
+                        
         </div>
         
         <footer>
